@@ -26,6 +26,12 @@ const TaskModal = ({ showModal, closeModal, addNewTask,updateSubmit,updateShowMo
 
   function handleUpdateTask() {
     // console.log(updateId,updateTaskInput,updateStatusInput)
+    if(!['completed','failed','ongoing'].includes(updateStatusInput)){
+      alert("Only 'completed','failed','ongoing' are accepted as Status !!!!")
+      return
+    }
+
+    console.log("herrrrrrr",updateStatusInput)
     updateSubmit(updateId,updateTaskInput,updateStatusInput);
     setUpdateTaskInput('');
   }
@@ -40,7 +46,7 @@ const TaskModal = ({ showModal, closeModal, addNewTask,updateSubmit,updateShowMo
               type="text"
               value={newTaskInput}
               onChange={handleNewTaskInputChange}
-              placeholder="Task name"
+              placeholder="Task name  "
             />
             <div className="modal-buttons">
               <button className='btn btn-success btn-lg' onClick={handleAddTask}>Add Task</button>
@@ -57,13 +63,13 @@ const TaskModal = ({ showModal, closeModal, addNewTask,updateSubmit,updateShowMo
               type="text"
               value={updateTaskInput}
               onChange={handleUpdatedTaskInputChange}
-              placeholder="Task name"
+              placeholder="Task name (Optional) "
             />
             <input
               type="text"
               value={updateStatusInput}
               onChange={handleUpdatedStatusInputChange}
-              placeholder="Status (completed/failed/ongoing)"
+              placeholder="Status (completed/failed/ongoing) Only these three are accepted !!!"
             />
             <div className="modal-buttons">
               <button className='btn btn-success btn-lg' onClick={handleUpdateTask}>Update Task</button>

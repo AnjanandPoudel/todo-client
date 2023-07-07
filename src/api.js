@@ -10,7 +10,7 @@ export const createTodo = async (data) => {
     return response.data.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    alert(error?.response?.data?.error)
   }
 };
 
@@ -22,7 +22,7 @@ export const getTodos = async () => {
     return response.data.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    alert(error?.response?.data?.error)
   }
 };
 
@@ -32,7 +32,7 @@ export const getTodo = async (id) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    alert(error?.response?.data?.error)
   }
 };
 
@@ -42,7 +42,7 @@ export const getCompletedTodo = async (id) => {
     return response.data.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    alert(error?.response?.data?.error)
   }
 };
 
@@ -52,7 +52,7 @@ export const getCompletionRateTodo = async () => {
     return response.data.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    alert(error?.response?.data?.error)
   }
 };
 
@@ -62,8 +62,8 @@ export const updateTodo = async (id, data) => {
     const response = await axios.patch(`${baseURL}/api/todo/${id}`, data);
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.log({error});
+    alert(error?.response?.data?.error)
   }
 };
 
@@ -74,6 +74,6 @@ export const deleteTodo = async (id) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    alert(error?.response?.data?.error)
   }
 };

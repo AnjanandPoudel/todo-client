@@ -37,6 +37,8 @@ const Dashboard = () => {
 
   function closeModal() {
     setShowModal(false);
+    setUpdateShowModal(false);
+
     setNewTaskInput("");
   }
 
@@ -69,8 +71,12 @@ const Dashboard = () => {
   async function addNewTask(task) {
     getAllTasks();
     openModal();
-    if (typeof task == "string") {
-      console.log({ task });
+    if (typeof task == "string" ) {
+      if(!task?.length > 0) {
+        alert("Please input a task")
+        return
+      }
+      
       const newTask = await createTodo({ task });
       console.log(newTask);
       setTasks((prevTasks) => [...prevTasks, newTask]);
@@ -98,10 +104,10 @@ const Dashboard = () => {
 
   async function updateSubmit(taskId, task, status) {
     console.log(taskId, task, status);
-
+    
     const data = await updateTodo(taskId, {
-      task: task.length > 0 ? task : undefined,
-      status: status.length > 0 ? status : undefined,
+      task: task?.length > 0 ? task : undefined,
+      status: status?.length > 0 ? status : undefined,
     });
 
     console.log(data);
@@ -122,7 +128,7 @@ const Dashboard = () => {
       <div className="dashboard">
         <div className="dashboard-container">
           <h1 className="dashboard-title">Dashboard</h1>
-          {dashboardItems.map((item, index) => (
+          {dashboardItems?.map((item, index) => (
             <DashboardItem
               key={index}
               title={item.title}
@@ -131,11 +137,12 @@ const Dashboard = () => {
           ))}
         </div>
         <div className="dashboard-contains">
-          {tasks.length > 0 && completionRateBool == false && (
+          {tasks?.length > 0 && completionRateBool == false && (
             <TaskTable
               tasks={tasks}
               deleteTask={deleteTask}
               updateTask={updateTask}
+              
             />
           )}
 
