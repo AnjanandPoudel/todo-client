@@ -15,11 +15,21 @@ export const createTodo = async (data) => {
 };
 
 // GET request example
-export const getTodo = async () => {
+export const getTodos = async () => {
   try {
     const response = await axios.get(`${baseURL}/api/todo`);
     console.log(response.data.data);
     return response.data.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getTodo = async (id) => {
+  try {
+    const response = await axios.get(`${baseURL}/api/todo/${id}`);
+    return response.data;
   } catch (error) {
     console.error(error);
     throw error;

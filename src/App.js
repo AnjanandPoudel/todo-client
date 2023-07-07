@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { createTodo, getTodo, updateTodo, deleteTodo } from './api';
+import { createTodo, getTodo, updateTodo, deleteTodo, getTodos } from './api';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState([]);
 
   // Fetch todos on component mount
   useEffect(() => {
@@ -11,9 +12,19 @@ const App = () => {
 
   const fetchTodos = async () => {
     try {
-      const todos = await getTodo();
+      const todos = await getTodos();
       console.log({todos})
       setTodos(todos);
+    } catch (error) {
+      console.error('Error getting todos:', error);
+    }
+  };
+
+  const fetchTodo = async (id) => {
+    try {
+      const data = await getTodo(id);
+      console.log({data})
+      setTodo(data);
     } catch (error) {
       console.error('Error getting todos:', error);
     }
@@ -44,7 +55,8 @@ const App = () => {
   const deleteTodoItem = async (id) => {
     try {
       await deleteTodo(id);
-      const updatedTodos = todos.filter((todo) => todo.id !== id);
+      const updatedTodos = todos.filter((todo) => todo._id !== id);
+      
       setTodos(updatedTodos);
     } catch (error) {
       console.error('Error deleting todo:', error);
