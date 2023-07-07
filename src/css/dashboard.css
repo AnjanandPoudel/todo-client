@@ -1,0 +1,62 @@
+/* dashboard.css */
+
+.dashboard{
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+
+/* Styles for the dashboard container */
+.dashboard-container {
+
+    height: 700px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #f0f0f0;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Styles for the dashboard title */
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the dashboard items */
+  .dashboard-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .dashboard-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .dashboard-item h2 {
+    margin: 0;
+  }
+  
+  /* Additional styles for specific items */
+  .dashboard-item:nth-child(2) {
+    background-color: #c0e7a4;
+  }
+  
+  .dashboard-item:nth-child(2):hover {
+    background-color: #a0d782;
+  }
+  
+  .dashboard-item:nth-child(4) {
+    background-color: #d6e4fd;
+  }
+  
+  .dashboard-item:nth-child(4):hover {
+    background-color: #b3cbf9;
+  }
+  

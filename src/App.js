@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createTodo, getTodo, updateTodo, deleteTodo, getTodos } from './api';
+import Dashboard from './components/dashboard';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -65,11 +66,13 @@ const App = () => {
 
   return (
     <div>
-      <h1>Todos</h1>
-      <button onClick={addTodo}>Add Todo</button>
-      <button onClick={fetchTodos}>fetch Todo</button>
+      <Dashboard />
+      {/* <h1>Todos</h1>
 
-      <ul>
+      <button onClick={addTodo}>Add Todo</button>
+      <button onClick={fetchTodos}>fetch Todo</button> */}
+
+      {/* <ul>
         {todos.map((todo) => (
           <li key={todo._id}>
             {todo.title}
@@ -79,7 +82,7 @@ const App = () => {
             <button onClick={() => deleteTodoItem(todo._id)}>Delete</button>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ const baseURL = 'http://localhost:5000';
 export const createTodo = async (data) => {
   try {
     const response = await axios.post(`${baseURL}/api/todo`, data);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error(error);
     throw error;
@@ -30,6 +30,26 @@ export const getTodo = async (id) => {
   try {
     const response = await axios.get(`${baseURL}/api/todo/${id}`);
     return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getCompletedTodo = async (id) => {
+  try {
+    const response = await axios.get(`${baseURL}/api/todo/completed`);
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getCompletionRateTodo = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/api/todo/completion-rate`);
+    return response.data.data;
   } catch (error) {
     console.error(error);
     throw error;
