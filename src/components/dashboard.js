@@ -44,6 +44,7 @@ const Dashboard = () => {
 
   async function getAllTasks() {
     try {
+      setCompletionRateBool(false);
       const fetchedTasks = await getTodos();
       setTasks(fetchedTasks);
       setActiveButton("getAllTasks");
@@ -55,6 +56,8 @@ const Dashboard = () => {
   async function getCompletedTasks() {
     // Filter completed tasks from the allTasks state or update state based on your requirements
     try {
+      setCompletionRateBool(false);
+
       const completed = await getCompletedTodo();
       setTasks(completed);
       setActiveButton("getCompletedTasks");
@@ -64,6 +67,7 @@ const Dashboard = () => {
   }
 
   async function addNewTask(task) {
+    getAllTasks();
     openModal();
     if (typeof task == "string") {
       console.log({ task });
@@ -106,12 +110,11 @@ const Dashboard = () => {
     setUpdateShowModal(false);
   }
 
- async function calculateCompletionRate() {
-    const data= await getCompletionRateTodo()
-    setCompletionRateBool(true)
-    setTasks(data)
+  async function calculateCompletionRate() {
+    const data = await getCompletionRateTodo();
+    setCompletionRateBool(true);
+    setTasks(data);
     console.log(data);
-    
   }
 
   return (
@@ -128,7 +131,7 @@ const Dashboard = () => {
           ))}
         </div>
         <div className="dashboard-contains">
-          {tasks.length > 0 && completionRateBool==false && (
+          {tasks.length > 0 && completionRateBool == false && (
             <TaskTable
               tasks={tasks}
               deleteTask={deleteTask}
@@ -136,11 +139,7 @@ const Dashboard = () => {
             />
           )}
 
-          {completionRateBool && (
-            <CompletionTable
-              items={tasks}
-            />
-          )}
+          {completionRateBool && <CompletionTable items={tasks} />}
         </div>
       </div>
 
